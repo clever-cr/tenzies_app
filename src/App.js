@@ -4,7 +4,7 @@ import Die from './components/Die';
 import { useEffect, useState } from 'react';
 import { nanoid } from "nanoid";
 import Confetti from 'react-confetti'
-function App() {
+const App = () => {
   const generateDice = () => {
     return {
       value: Math.floor((Math.random() * 6) + 1),
@@ -54,7 +54,6 @@ function App() {
     const allSameValue = dice.every(die => die.value === firstValue)
     if (allHeld && allSameValue) {
       setTenzies(true)
-      console.log("You won")
     }
 
   }, [dice])
@@ -64,10 +63,10 @@ function App() {
     <main className='flex flex-col items-center'>
       <h1 className="title">Tenzies</h1>
       <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
-      <div className=' grid grid-rows-2 grid-cols-5 gap-2 px-9- py-36'>
+      <div className='grid grid-rows-2 grid-cols-5 gap-2 py-36'>
         {diceElements}
       </div>
-      <button className='roll-dice ' onClick={rollDice}>{!tenzies ? "roll" : "New Game"}</button>
+      <button className='roll-dice' onClick={rollDice}>{!tenzies ? "roll" : "New Game"}</button>
       {tenzies && <Confetti />}
     </main>
 
